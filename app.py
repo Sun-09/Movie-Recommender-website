@@ -132,4 +132,4 @@ if st.button('Recommend Similar Movies'):
 
 st.title("Thanks You for visiting")
 
-
+st.write("Made By Souradeep Bera")
