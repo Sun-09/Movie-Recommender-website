@@ -27,4 +27,6 @@ In today's digital age, the sheer volume of movies available can be overwhelming
 
 To get started with our Movie Recommendation System, please follow the installation and usage instructions in this README file. We're excited to have you join our community of movie enthusiasts and hope you find our recommendations both entertaining and helpful.
 
-Happy movie-watching!
+## Happy movie-watching!
+
+![OIG BxxIyCiSz](https://github.com/Sun-09/Movie-Recommender-website/assets/104966547/e5efa151-94eb-41d4-bc96-d79de48d3e8f)
