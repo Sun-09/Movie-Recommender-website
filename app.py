@@ -3,7 +3,6 @@ import pickle
 import pandas as pd
 import requests
 
-
 def fetch_poster(movie_id):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US'.format(movie_id))
     data = response.json()
@@ -13,8 +12,9 @@ def fetch_info(movie_id):
     data = response.json()
     info = []
     info.append(data['original_title'])
-    info.append(data['overview'])
     info.append(data['release_date'])
+    info.append(data['tagline'])
+    info.append(data['overview'])
     info.append(data['vote_average'])
     return info
 def recommend(movie):
@@ -42,8 +42,28 @@ st.title("Movie Recommender System")
 st.image('https://getwallpapers.com/wallpaper/full/9/9/a/1283451-movie-wallpapers-for-desktop-1920x1080-free-download.jpg')
 
 selected_movie_name = st.selectbox(
-    'Which Movies Do you want to Watch?',
+    'Which Movies Do you have Recently Watch?',
     movies['title'].values)
+
+movie_index = movies[movies['title'] == selected_movie_name].index[0]
+response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US'.format(movies.movie_id[movie_index]))
+data = response.json()
+col1, col2 = st.columns(2)
+with col1:
+    st.image(fetch_poster(movies.movie_id[movie_index]))
+with col2:
+    st.title(movies.title[movie_index])
+    for i in range (0, len(data['genres'])):
+        st.markdown(data['genres'][i]['name'])
+    st.write(data['runtime'])
+    st.write(data['release_date'])
+    st.write(data['tagline'])
+    st.write(data['overview'])
+    st.write(data['vote_average'])
+    st.title('Production Companies :')
+    for i in range (0, len(data['production_companies'])):
+        st.markdown(data['production_companies'][i]['name'])
+
 
 if st.button('Recommend Similar Movies'):
     names, poster, info = recommend(selected_movie_name)
@@ -56,6 +76,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[0][1])
             st.write(info[0][2])
             st.write(info[0][3])
+            st.write(info[0][4])
+
     with col2:
         st.header(names[1])
         st.image(poster[1])
@@ -64,6 +86,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[1][1])
             st.write(info[1][2])
             st.write(info[1][3])
+            st.write(info[1][4])
+
     with col3:
         st.header(names[2])
         st.image(poster[2])
@@ -72,6 +96,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[2][1])
             st.write(info[2][2])
             st.write(info[2][3])
+            st.write(info[2][4])
+
     with col4:
         st.header(names[3])
         st.image(poster[3])
@@ -80,6 +106,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[3][1])
             st.write(info[3][2])
             st.write(info[3][3])
+            st.write(info[3][4])
+
     with col5:
         st.header(names[4])
         st.image(poster[4])
@@ -88,6 +116,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[4][1])
             st.write(info[4][2])
             st.write(info[4][3])
+            st.write(info[4][4])
+
     col6, col7, col8, col9, col10 = st.columns(5)
     with col1:
         st.header(names[5])
@@ -97,6 +127,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[5][1])
             st.write(info[5][2])
             st.write(info[5][3])
+            st.write(info[5][4])
+
     with col2:
         st.header(names[6])
         st.image(poster[6])
@@ -105,6 +137,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[6][1])
             st.write(info[6][2])
             st.write(info[6][3])
+            st.write(info[6][4])
+
     with col3:
         st.header(names[7])
         st.image(poster[7])
@@ -113,6 +147,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[7][1])
             st.write(info[7][2])
             st.write(info[7][3])
+            st.write(info[7][4])
+
     with col4:
         st.header(names[8])
         st.image(poster[8])
@@ -121,6 +157,8 @@ if st.button('Recommend Similar Movies'):
             st.write(info[8][1])
             st.write(info[8][2])
             st.write(info[8][3])
+            st.write(info[8][4])
+
     with col5:
         st.header(names[9])
         st.image(poster[9])
@@ -129,7 +167,16 @@ if st.button('Recommend Similar Movies'):
             st.write(info[9][1])
             st.write(info[9][2])
             st.write(info[9][3])
+            st.write(info[9][4])
+
 
 st.title("Thanks You for visiting")
 
 st.write("Made By Souradeep Bera")
+
+
+
+
+
+
+
