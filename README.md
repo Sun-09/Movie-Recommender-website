@@ -29,4 +29,4 @@ To get started with our Movie Recommendation System, please follow the installat
 
 ## Happy movie-watching!
 
-![OIG BxxIyCiSz](https://github.com/Sun-09/Movie-Recommender-website/assets/104966547/e5efa151-94eb-41d4-bc96-d79de48d3e8f)
+![Image](https://github.com/user-attachments/assets/4d450fcf-b17a-43aa-aed5-22213729d6c9)
